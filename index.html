@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Information Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+<h2>Animal Information Form</h2>
+
+<form id="animalForm" action="submit.php" method="POST" enctype="multipart/form-data">
+    <label for="animalName">Name:</label><br>
+    <input type="text" id="animalName" name="animalName" required><br><br>
+
+    <label for="category">Category:</label><br>
+    <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="Mammal">Mammal</option>
+        <option value="Bird">Bird</option>
+        <option value="Reptile">Reptile</option>
+        <!-- Add more options as needed -->
+    </select><br><br>
+
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" accept="image/*" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="lifeExpectancy">Life Expectancy:</label><br>
+    <select id="lifeExpectancy" name="lifeExpectancy" required>
+        <option value="">Select Life Expectancy</option>
+        <option value="Short">Short</option>
+        <option value="Medium">Medium</option>
+        <option value="Long">Long</option>
+        <!-- Add more options as needed -->
+    </select><br><br>
+
+    <div class="g-recaptcha" data-sitekey="6Ldl7c0pAAAAAKh0ab2ZHgep5z-AJcB9VUhXcHc6"></div><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
