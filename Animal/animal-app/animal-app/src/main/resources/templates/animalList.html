@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal List</title>
+</head>
+<body>
+    <h1>Animal List</h1>
+    <form method="get" th:action="@{/animals/list}">
+        <label for="sort">Sort by:</label>
+        <select id="sort" name="sort">
+            <option value="name">Alphabetically</option>
+            <option value="category">Category</option>
+            <option value="life_expectancy">Life Expectancy</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Life Expectancy</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="animal : ${animals}">
+                <td th:text="${animal.name}"></td>
+                <td th:text="${animal.category}"></td>
+                <td><img th:src="'data:' + ${animal.imageType} + ';base64,' + ${T(java.util.Base64).getEncoder().encodeToString(animal.image)}" width="100"></td>
+                <td th:text="${animal.description}"></td>
+                <td th:text="${animal.lifeExpectancy}"></td>
+                <td>
+                    <a th:href="@{/animals/edit/{id}(id=${animal.id})}">Edit</a> | 
+                    <a th:href="@{/animals/delete/{id}(id=${animal.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

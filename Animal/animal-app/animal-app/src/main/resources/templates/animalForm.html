@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal Information Form</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <h1>Submit/Edit Animal Information</h1>
+    <form th:action="@{/animals/submit}" th:object="${animal}" method="post" enctype="multipart/form-data">
+        <label for="name">Name of the Animal:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br><br>
+
+        <label>Category:</label>
+        <input type="radio" id="mammal" name="category" value="Mammal" th:field="*{category}">
+        <label for="mammal">Mammal</label>
+        <input type="radio" id="bird" name="category" value="Bird" th:field="*{category}">
+        <label for="bird">Bird</label>
+        <input type="radio" id="reptile" name="category" value="Reptile" th:field="*{category}">
+        <label for="reptile">Reptile</label>
+        <input type="radio" id="fish" name="category" value="Fish" th:field="*{category}">
+        <label for="fish">Fish</label>
+        <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span><br><br>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="file" required>
+        <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br><br>
+
+        <label for="life_expectancy">Life Expectancy:</label>
+        <select id="life_expectancy" th:field="*{lifeExpectancy}" required>
+            <option value="">Select</option>
+            <option value="2-5">2-5 years</option>
+            <option value="5-10">5-10 years</option>
+            <option value="10-20">10-20 years</option>
+            <option value="20+">20+ years</option>
+        </select>
+        <span th:if="${#fields.hasErrors('lifeExpectancy')}" th:errors="*{lifeExpectancy}"></span><br><br>
+
+        <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
+        <span th:if="${captchaError}" th:text="${captchaError}"></span><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
